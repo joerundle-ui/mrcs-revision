@@ -109,7 +109,8 @@ else:
             response = st.write_stream(
                 stream_tutor_response(st.session_state.messages, st.session_state.topic, weak)
             )
-        st.session_state.messages.append({"role": "assistant", "content": response, "should_speak": True})
+        is_first_reply = len(st.session_state.messages) <= 2
+        st.session_state.messages.append({"role": "assistant", "content": response, "should_speak": not is_first_reply})
         st.rerun()
 
     # Input area

@@ -72,7 +72,7 @@ def stream_tutor_response(messages, topic=None, weak_areas=None):
         system += f"\n\nStudent is weak on: {concepts}. If relevant to current topic, probe these gently with follow-up questions."
 
     with _client().messages.stream(
-        model="claude-opus-4-5",
+        model="claude-sonnet-4-6",
         max_tokens=400,
         system=system,
         messages=messages,
@@ -84,7 +84,7 @@ def get_exam_question(topic, station_label):
     """Get a single exam station question."""
     prompt = EXAM_PROMPT.format(topic=topic, station_label=station_label)
     response = _client().messages.create(
-        model="claude-opus-4-5",
+        model="claude-sonnet-4-6",
         max_tokens=400,
         messages=[{"role": "user", "content": prompt}]
     )
@@ -94,7 +94,7 @@ def mark_exam_answer(question, answer):
     """Mark an exam answer and return feedback."""
     prompt = EXAM_MARK_PROMPT.format(question=question, answer=answer)
     response = _client().messages.create(
-        model="claude-opus-4-5",
+        model="claude-sonnet-4-6",
         max_tokens=400,
         messages=[{"role": "user", "content": prompt}]
     )
