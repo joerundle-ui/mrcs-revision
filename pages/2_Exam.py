@@ -177,6 +177,8 @@ elif st.session_state.exam_active:
             default_text = st.session_state.get("exam_text_input", "") + (" " + speech_val if speech_val else "")
             default_text = default_text.strip()
 
+            _render_speech_button("exam")
+
             with st.form("exam_form", clear_on_submit=True):
                 answer = st.text_area(
                     "Your answer:",
@@ -184,11 +186,7 @@ elif st.session_state.exam_active:
                     height=180,
                     placeholder="Type your full answer here…",
                 )
-                col_mic, col_submit = st.columns([1, 2])
-                with col_mic:
-                    _render_speech_button("exam")
-                with col_submit:
-                    submitted = st.form_submit_button("Submit Answer →", type="primary", use_container_width=True)
+                submitted = st.form_submit_button("Submit Answer →", type="primary", use_container_width=True)
 
             if submitted:
                 answer_text = answer.strip()
