@@ -4,7 +4,6 @@ import sys, os
 sys.path.insert(0, os.path.join(os.path.dirname(__file__), ".."))
 from utils.state import init_state, EXAM_STATIONS, STATION_TIME, TOPICS
 from utils.ai import get_exam_question, mark_exam_answer
-from streamlit_js_eval import streamlit_js_eval
 
 def _render_speech_button(context: str):
     """Render a speech-to-text button using browser Web Speech API."""
