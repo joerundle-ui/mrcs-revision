@@ -172,24 +172,22 @@ elif st.session_state.exam_active:
         st.markdown(f"<div class='exam-card'>{st.session_state.exam_question}</div>", unsafe_allow_html=True)
 
         if not st.session_state.exam_feedback:
-            # Pre-fill text area with any speech result
+            # Append any speech result to the text area
             speech_val = st.session_state.pop("_speech_exam", "")
-            default_text = st.session_state.get("exam_text_input", "") + (" " + speech_val if speech_val else "")
-            default_text = default_text.strip()
+            if speech_val:
+                existing = st.session_state.get("exam_answer_input", "")
+                st.session_state.exam_answer_input = (existing + " " + speech_val).strip()
 
             _render_speech_button("exam")
 
-            with st.form("exam_form"):
-                answer = st.text_area(
-                    "Your answer:",
-                    value=default_text,
-                    height=180,
-                    placeholder="Type your full answer here…",
-                )
-                submitted = st.form_submit_button("Submit Answer →", type="primary", use_container_width=True)
-
-            if submitted:
-                answer_text = answer.strip()
+            st.text_area(
+                "Your answer:",
+                height=180,
+                placeholder="Type your full answer here…",
+                key="exam_answer_input",
+            )
+            if st.button("Submit Answer →", type="primary", use_container_width=True, key="submit_btn"):
+                answer_text = st.session_state.get("exam_answer_input", "").strip()
                 if answer_text:
                     st.session_state.exam_answer = answer_text
                     with st.spinner("Marking…"):
@@ -198,6 +196,7 @@ elif st.session_state.exam_active:
                             answer_text,
                         )
                     st.session_state.exam_result_saved = False
+                    st.session_state.exam_answer_input = ""
                     st.rerun()
                 else:
                     st.warning("Please write or speak an answer first.")
@@ -229,7 +228,7 @@ elif st.session_state.exam_active:
                     st.session_state.exam_question = None
                     st.session_state.exam_answer = ""
                     st.session_state.exam_feedback = None
-                    st.session_state.exam_text_input = ""
+                    st.session_state.exam_answer_input = ""
                     st.session_state.exam_result_saved = False
                     st.rerun()
             else:
