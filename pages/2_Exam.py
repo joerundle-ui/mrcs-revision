@@ -179,7 +179,7 @@ elif st.session_state.exam_active:
 
             _render_speech_button("exam")
 
-            with st.form("exam_form", clear_on_submit=True):
+            with st.form("exam_form"):
                 answer = st.text_area(
                     "Your answer:",
                     value=default_text,
@@ -191,7 +191,6 @@ elif st.session_state.exam_active:
             if submitted:
                 answer_text = answer.strip()
                 if answer_text:
-                    st.session_state.exam_text_input = ""
                     st.session_state.exam_answer = answer_text
                     with st.spinner("Marking…"):
                         st.session_state.exam_feedback = mark_exam_answer(
