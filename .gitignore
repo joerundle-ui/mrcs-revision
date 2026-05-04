@@ -1,0 +1,49 @@
+# Environment & Secrets
+.env
+.env.local
+.streamlit/secrets.toml
+ANTHROPIC_API_KEY
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+env/
+venv/
+ENV/
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# OS
+.DS_Store
+Thumbs.db
+
+# App bundle (not needed for Streamlit Cloud)
+*.app/
+MRCS.app/
+
+# Streamlit
+.streamlit/cache/
+.streamlit/.streamlitserver/

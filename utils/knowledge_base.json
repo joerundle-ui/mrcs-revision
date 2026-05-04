@@ -1,0 +1,249 @@
+{
+  "metadata": {
+    "version": "1.0",
+    "source": "Salah's Notes MRCS Part B",
+    "last_updated": "2026-05-04",
+    "topics": [
+      "anatomy",
+      "physiology",
+      "pathology",
+      "perioperative",
+      "emergency",
+      "oncology",
+      "communication"
+    ]
+  },
+  "anatomy": {
+    "Applied Surgical Anatomy": [
+      {
+        "concept": "Spinal cord compression",
+        "key_facts": [
+          "Conus medullaris ends at L1/L2 (varies between T12-L2)",
+          "Cauda equina syndrome = bilateral leg pain, saddle anaesthesia, bladder/bowel dysfunction",
+          "Emergency decompression needed within 48 hours for best neurological recovery",
+          "MRI is gold standard imaging"
+        ],
+        "clinical_scenarios": [
+          "Central disc herniation L4/5 with progressive paraparesis",
+          "Post-laminectomy spinal instability causing myelopathy"
+        ],
+        "exam_pitfalls": [
+          "Confusing conus with cauda equina presentation",
+          "Missing bilateral symptoms indicating central pathology"
+        ]
+      },
+      {
+        "concept": "Brachial plexus injuries",
+        "key_facts": [
+          "C5-C6 (Erb's palsy): waiter's tip position, loss of abduction/external rotation",
+          "C8-T1 (Klumpke's palsy): claw hand, loss of intrinsic hand muscles",
+          "Root avulsion vs traction: myelography shows nerve root sleeves absent in avulsion",
+          "Horner's syndrome (ptosis, miosis, anhidrosis) indicates T1 root involvement"
+        ],
+        "clinical_scenarios": [
+          "Motorcycle crash with shoulder dislocation and C5/6 nerve injury",
+          "Birth injury with persistent Erb's palsy at 6 months"
+        ],
+        "exam_pitfalls": [
+          "Not testing intrinsic hand muscles in lower plexus injuries",
+          "Assuming all injuries are traction injuries (some are transection)"
+        ]
+      },
+      {
+        "concept": "Femoral nerve anatomy and femoral block",
+        "key_facts": [
+          "Femoral nerve posterior to femoral artery in groin (vein is medial)",
+          "Femoral block provides analgesia to: anterior thigh, knee, medial leg via saphenous nerve",
+          "Does NOT cover lateral thigh (lateral femoral cutaneous nerve separate)",
+          "Saphenous nerve block needed for medial lower leg"
+        ],
+        "clinical_scenarios": [
+          "Femoral fracture analgesia in trauma — femoral block before traction",
+          "Post-ACL repair analgesia"
+        ],
+        "exam_pitfalls": [
+          "Thinking femoral block covers whole leg (doesn't reach posterior thigh or calf)",
+          "Mistaking femoral vein anatomy — it's medial not lateral"
+        ]
+      }
+    ]
+  },
+  "physiology": {
+    "Physiology & Critical Care": [
+      {
+        "concept": "Intrathoracic pressure and venous return",
+        "key_facts": [
+          "Negative intrathoracic pressure in inspiration sucks venous blood into right atrium",
+          "Positive pressure ventilation (IPPV) REDUCES venous return",
+          "In cardiac tamponade, venous return is mechanically obstructed despite intrathoracic pressure",
+          "Fluid responsiveness depends on Frank-Starling curve position"
+        ],
+        "clinical_scenarios": [
+          "Hypotensive patient on mechanical ventilation — reduce PEEP to improve VR",
+          "Cardiac tamponade with pulsus paradoxus (>10mmHg drop in SBP on inspiration)"
+        ],
+        "exam_pitfalls": [
+          "Thinking IPPV increases preload (it decreases it)",
+          "Confusing pulsus paradoxus with pulsus alternans"
+        ]
+      },
+      {
+        "concept": "Oxygen delivery and tissue oxygenation",
+        "key_facts": [
+          "DO2 = CO × Hb × SaO2 × 1.34 (+ dissolved O2)",
+          "VO2 = DO2 × (1 - SvO2) — extraction depends on capillary oxygen diffusion",
+          "Lactic acidosis suggests inadequate DO2 or mitochondrial dysfunction",
+          "Increasing FiO2 above PaO2 100 doesn't improve DO2 if Hb saturated"
+        ],
+        "clinical_scenarios": [
+          "Septic shock: high cardiac output, low SVR, high SvO2 ('cloud like' appearance on CXR)",
+          "Cardiogenic shock: low CO, high SVR, low SvO2"
+        ],
+        "exam_pitfalls": [
+          "Assuming normal SaO2 = adequate oxygenation (need DO2 and extraction)",
+          "Giving more oxygen in cardiogenic shock without inotropes"
+        ]
+      },
+      {
+        "concept": "Acid-base disturbances",
+        "key_facts": [
+          "Respiratory acidosis: hypercapnia (high CO2) — hypoventilation",
+          "Respiratory alkalosis: hypocapnia (low CO2) — hyperventilation",
+          "Metabolic acidosis: low HCO3 or high H+",
+          "Winter's formula: predicted pCO2 = 1.5×[HCO3] + 8 ±2 — if actual > predicted = concurrent respiratory acidosis"
+        ],
+        "clinical_scenarios": [
+          "Post-op respiratory depression with pCO2 55, pH 7.28, HCO3 24 → primary respiratory acidosis",
+          "Severe diarrhoea with pH 7.2, HCO3 12, pCO2 25 → metabolic acidosis with appropriate respiratory compensation"
+        ],
+        "exam_pitfalls": [
+          "Missing mixed disorders (calculating Winter's formula is key)",
+          "Not recognizing when respiratory compensation is INADEQUATE"
+        ]
+      }
+    ]
+  },
+  "pathology": {
+    "Surgical Pathology": [
+      {
+        "concept": "Wound healing phases",
+        "key_facts": [
+          "Haemostasis (0-10 min): platelets, fibrin clot",
+          "Inflammation (0-3 days): neutrophils, macrophages, cytokine release",
+          "Proliferation (3 days-3 weeks): fibroblasts, collagen I/III, angiogenesis, granulation tissue",
+          "Remodelling (3 weeks-2 years): collagen cross-linking, scar maturation, type I dominant",
+          "Collagen tensile strength at 2 weeks = ~30% of unwounded skin"
+        ],
+        "clinical_scenarios": [
+          "Acute inflammatory response after appendicectomy (fever, WCC rise expected)",
+          "Excessive scar tissue after deep burn — excessive collagen in remodelling phase"
+        ],
+        "exam_pitfalls": [
+          "Thinking healing is 'complete' after epithelialization (remodelling continues for months)",
+          "Not considering vitamin C/zinc/protein needs during proliferation phase"
+        ]
+      },
+      {
+        "concept": "Neoplasia — carcinogenesis and metastasis",
+        "key_facts": [
+          "Multi-hit hypothesis: typically 4-7 mutations for malignant transformation",
+          "Hallmarks: sustained proliferation, apoptosis evasion, replicative immortality, angiogenesis, invasion/metastasis",
+          "Epithelial-mesenchymal transition (EMT): loss of E-cadherin, gain of vimentin → increased motility",
+          "Lymphatic spread earlier than vascular for most solid tumours"
+        ],
+        "clinical_scenarios": [
+          "Colorectal cancer: APC → KRAS → TP53 → SMAD4 sequence over 10-15 years",
+          "Invasive ductal carcinoma breast: early lymph node spread to axilla"
+        ],
+        "exam_pitfalls": [
+          "Thinking mutation accumulation is time-dependent only (depends on selective pressure)",
+          "Assuming all tumours spread via bloodstream first (lymphatic spread often earlier)"
+        ]
+      }
+    ]
+  },
+  "perioperative": {
+    "Perioperative Care": [
+      {
+        "concept": "Prophylactic antibiotics timing and choice",
+        "key_facts": [
+          "Clean surgery: single prophylactic dose at induction (goal: CPL of 1-1.5 hours before incision)",
+          "Clean-contaminated: continue 24h post-op (48h for cardiac surgery)",
+          "Choice depends on: wound type, local resistance patterns, allergy history",
+          "Re-dosing: if surgery exceeds 2 half-lives of antibiotic (e.g., cefazolin at 90 min)"
+        ],
+        "clinical_scenarios": [
+          "Routine cholecystectomy: cefazolin 1g IV at induction, that's it",
+          "Emergency appendicitis with perforation: requires prolonged course post-op, not just prophylaxis"
+        ],
+        "exam_pitfalls": [
+          "Giving 'prophylactic' antibiotics for >24 hours in clean surgery (becomes treatment)",
+          "Forgetting to re-dose in long cases"
+        ]
+      }
+    ]
+  },
+  "emergency": {
+    "Emergency & Trauma": [
+      {
+        "concept": "Primary and secondary survey (ATLS)",
+        "key_facts": [
+          "Primary: Airway, Breathing, Circulation, Disability, Exposure",
+          "Life threats in primary: airway obstruction, tension pneumothorax, massive haemothorax, flail chest, cardiac tamponade",
+          "Secondary: head-to-toe systematic exam, back of patient rolled",
+          "Trauma ultrasound (FAST): pericardium, paracolic gutters, pouch of Douglas, pneumothorax"
+        ],
+        "clinical_scenarios": [
+          "Stab wound to chest: tension pneumo → immediate needle decompression before imaging",
+          "Car crush: bilateral leg crush → rhabdomyolysis, AKI risk"
+        ],
+        "exam_pitfalls": [
+          "Fixating on obvious wound while missing life threats in primary survey",
+          "Not rolling the patient to examine back (missed injuries)"
+        ]
+      }
+    ]
+  },
+  "oncology": {
+    "Surgical Oncology": [
+      {
+        "concept": "Staging systems (TNM) and prognostic factors",
+        "key_facts": [
+          "TNM: Tumour size/depth, Node involvement, Metastases",
+          "Stage grouping varies by cancer (stage 1 breast ≠ stage 1 colorectal)",
+          "Prognostic factors: grade, vascular invasion, margin status, lymph node ratio",
+          "Margin status: R0 (negative), R1 (microscopic positive), R2 (macroscopic positive)"
+        ],
+        "clinical_scenarios": [
+          "Colorectal cancer pT3N1M0 → stage IIIA → adjuvant chemo indicated",
+          "Breast cancer T1N0M0 Grade III HER2+ → might consider adjuvant despite stage I"
+        ],
+        "exam_pitfalls": [
+          "Confusing TNM with stage grouping (not 1:1 correlation)",
+          "Not considering other prognostic factors beyond TNM"
+        ]
+      }
+    ]
+  },
+  "communication": {
+    "Communication & Ethics": [
+      {
+        "concept": "Consent: capacity, information, voluntariness",
+        "key_facts": [
+          "Capacity: understand relevant info, retain it, weigh it, communicate decision",
+          "Presumed competent until proven otherwise",
+          "Information: benefits, risks, alternatives, consequences of no treatment",
+          "Valid consent requires: capacity, information, voluntariness, no undue influence"
+        ],
+        "clinical_scenarios": [
+          "Confused elderly patient post-op: capacity assessed 6 hours post-op vs next morning",
+          "Jehovah's Witness refusing blood: competent refusal even if outcome worse"
+        ],
+        "exam_pitfalls": [
+          "Thinking age = incapacity (assess individual capacity, not age/diagnosis)",
+          "Forcing treatment on competent person refusing it (assault)"
+        ]
+      }
+    ]
+  }
+}

@@ -1,0 +1,9 @@
+streamlit>=1.30.0
+anthropic>=0.40.0
+plotly>=5.0.0
+pandas>=2.0.0
+streamlit-autorefresh>=0.0.2
+gtts>=2.4.0
+pydub>=0.25.1
+openai-whisper>=20230314
+pillow>=10.0.0

@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Inter', sans-serif; }
+  body { background: transparent; display: flex; align-items: center; gap: 10px; padding: 4px 0; }
+
+  #btn {
+    display: flex; align-items: center; gap: 8px;
+    background: #1E3A5F; color: white;
+    border: 2px solid #2979FF; border-radius: 8px;
+    padding: 8px 16px; cursor: pointer; font-size: 14px;
+    white-space: nowrap;
+    transition: all 0.2s;
+  }
+  #btn:hover  { background: #2979FF; }
+  #btn.active { background: #c62828; border-color: #FF5252; animation: pulse 1s infinite; }
+  @keyframes pulse { 0%,100%{opacity:1} 50%{opacity:0.7} }
+
+  #status { color: #7B9CBB; font-size: 13px; }
+  #status.ok  { color: #00C853; font-weight: 600; }
+  #status.err { color: #FF5252; }
+</style>
+</head>
+<body>
+<button id="btn" onclick="toggle()">🎤 Speak</button>
+<div id="status">Click to speak</div>
+
+<script>
+  // ── Streamlit component protocol ──────────────────────────────────────────
+  let _rendered = false;
+
+  function sendToStreamlit(value) {
+    window.parent.postMessage({
+      isStreamlitMessage: true,
+      type: "streamlit:setComponentValue",
+      value: value,
+      dataType: "json"
+    }, "*");
+  }
+
+  // Signal ready and wait for first render
+  window.parent.postMessage({
+    isStreamlitMessage: true,
+    type: "streamlit:componentReady",
+    apiVersion: 1
+  }, "*");
+
+  window.addEventListener("message", function(e) {
+    if (e.data && e.data.type === "streamlit:render") {
+      if (!_rendered) {
+        _rendered = true;
+        // Set initial null value so Streamlit knows default
+        sendToStreamlit(null);
+      }
+    }
+  });
+
+  // Set iframe height
+  window.parent.postMessage({
+    isStreamlitMessage: true,
+    type: "streamlit:setFrameHeight",
+    height: 52
+  }, "*");
+
+  // ── Speech recognition ────────────────────────────────────────────────────
+  const SR = window.SpeechRecognition || window.webkitSpeechRecognition;
+  let recognition = null;
+  let active = false;
+  let finalTranscript = "";
+
+  function toggle() {
+    if (!SR) {
+      document.getElementById('status').className = 'err';
+      document.getElementById('status').textContent = '❌ Use Chrome or Edge';
+      return;
+    }
+    if (active) {
+      recognition.stop();
+      return;
+    }
+    finalTranscript = "";
+    recognition = new SR();
+    recognition.lang = 'en-GB';
+    recognition.continuous = true;
+    recognition.interimResults = true;
+
+    recognition.onstart = () => {
+      active = true;
+      document.getElementById('btn').className = 'active';
+      document.getElementById('btn').textContent = '⏹ Stop';
+      document.getElementById('status').className = '';
+      document.getElementById('status').textContent = '🔴 Listening…';
+    };
+
+    recognition.onresult = (e) => {
+      let interim = '';
+      for (let i = e.resultIndex; i < e.results.length; i++) {
+        const t = e.results[i][0].transcript;
+        if (e.results[i].isFinal) { finalTranscript += t + ' '; }
+        else { interim = t; }
+      }
+      const display = (finalTranscript + interim).trim();
+      document.getElementById('status').className = 'ok';
+      document.getElementById('status').textContent = display || '🔴 Listening…';
+    };
+
+    recognition.onerror = (e) => {
+      document.getElementById('status').className = 'err';
+      document.getElementById('status').textContent = e.error === 'not-allowed'
+        ? '❌ Allow mic in browser settings' : '❌ ' + e.error;
+      active = false;
+      document.getElementById('btn').className = '';
+      document.getElementById('btn').textContent = '🎤 Speak';
+    };
+
+    recognition.onend = () => {
+      active = false;
+      document.getElementById('btn').className = '';
+      document.getElementById('btn').textContent = '🎤 Speak';
+      const result = finalTranscript.trim();
+      if (result) {
+        document.getElementById('status').className = 'ok';
+        document.getElementById('status').textContent = '✓ ' + result;
+        sendToStreamlit(result);  // send to Streamlit
+      } else {
+        document.getElementById('status').textContent = 'Nothing captured — try again';
+      }
+    };
+
+    recognition.start();
+  }
+</script>
+</body>
+</html>
