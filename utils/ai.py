@@ -71,11 +71,12 @@ def stream_tutor_response(messages, topic=None, weak_areas=None):
         concepts = ", ".join([w["concept"] for w in weak_areas[:3]])
         system += f"\n\nStudent is weak on: {concepts}. If relevant to current topic, probe these gently with follow-up questions."
 
+    clean = [{"role": m["role"], "content": m["content"]} for m in messages]
     with _client().messages.stream(
         model="claude-sonnet-4-6",
         max_tokens=400,
         system=system,
-        messages=messages,
+        messages=clean,
     ) as stream:
         for text in stream.text_stream:
             yield text
