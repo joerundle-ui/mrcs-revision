@@ -172,32 +172,38 @@ elif st.session_state.exam_active:
         st.markdown(f"<div class='exam-card'>{st.session_state.exam_question}</div>", unsafe_allow_html=True)
 
         if not st.session_state.exam_feedback:
-            st.session_state.setdefault("exam_text_input", "")
-            answer = st.text_area(
-                "Your answer:",
-                height=180,
-                placeholder="Type your full answer here…",
-                key="exam_text_input",
-            )
+            # Pre-fill text area with any speech result
+            speech_val = st.session_state.pop("_speech_exam", "")
+            default_text = st.session_state.get("exam_text_input", "") + (" " + speech_val if speech_val else "")
+            default_text = default_text.strip()
 
-            col_mic, col_submit = st.columns([1, 2])
-            with col_mic:
-                _render_speech_button("exam")
+            with st.form("exam_form", clear_on_submit=True):
+                answer = st.text_area(
+                    "Your answer:",
+                    value=default_text,
+                    height=180,
+                    placeholder="Type your full answer here…",
+                )
+                col_mic, col_submit = st.columns([1, 2])
+                with col_mic:
+                    _render_speech_button("exam")
+                with col_submit:
+                    submitted = st.form_submit_button("Submit Answer →", type="primary", use_container_width=True)
 
-            with col_submit:
-                if st.button("Submit Answer →", type="primary", use_container_width=True):
-                    answer_text = st.session_state.get("exam_text_input", "").strip()
-                    if answer_text:
-                        st.session_state.exam_answer = answer_text
-                        with st.spinner("Marking…"):
-                            st.session_state.exam_feedback = mark_exam_answer(
-                                st.session_state.exam_question,
-                                answer_text,
-                            )
-                        st.session_state.exam_result_saved = False
-                        st.rerun()
-                    else:
-                        st.warning("Please write or speak an answer first.")
+            if submitted:
+                answer_text = answer.strip()
+                if answer_text:
+                    st.session_state.exam_text_input = ""
+                    st.session_state.exam_answer = answer_text
+                    with st.spinner("Marking…"):
+                        st.session_state.exam_feedback = mark_exam_answer(
+                            st.session_state.exam_question,
+                            answer_text,
+                        )
+                    st.session_state.exam_result_saved = False
+                    st.rerun()
+                else:
+                    st.warning("Please write or speak an answer first.")
         else:
             # Show feedback
             fb = st.session_state.exam_feedback
