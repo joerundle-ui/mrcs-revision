@@ -63,7 +63,7 @@ with st.sidebar:
             st.rerun()
 
     st.divider()
-    voice = st.toggle("🔊 Voice responses", value=st.session_state.get("voice_enabled", True))
+    voice = st.toggle("🔊 Voice responses", value=st.session_state.get("voice_enabled", False))
     st.session_state.voice_enabled = voice
 
     weak = get_weak_areas()
