@@ -4,6 +4,7 @@ import sys, os
 sys.path.insert(0, os.path.join(os.path.dirname(__file__), ".."))
 from utils.state import init_state, EXAM_STATIONS, STATION_TIME, TOPICS
 from utils.ai import get_exam_question, mark_exam_answer
+from streamlit_js_eval import streamlit_js_eval
 
 st.set_page_config(page_title="Exam · MRCS", page_icon="📋", layout="wide", initial_sidebar_state="expanded")
 
@@ -113,10 +114,28 @@ elif st.session_state.exam_active:
         st.markdown(f"<div class='exam-card'>{st.session_state.exam_question}</div>", unsafe_allow_html=True)
 
         if not st.session_state.exam_feedback:
+            # Speech input
+            if st.button("🎤 Speak Answer", key="mic_btn_exam"):
+                result = streamlit_js_eval(js_expressions="""
+                    new Promise((resolve, reject) => {
+                        const SR = window.SpeechRecognition || window.webkitSpeechRecognition;
+                        if (!SR) { reject('Use Chrome'); return; }
+                        const r = new SR();
+                        r.lang = 'en-GB'; r.continuous = false; r.interimResults = false;
+                        r.onresult = e => resolve(e.results[0][0].transcript);
+                        r.onerror = e => reject(e.error);
+                        r.start();
+                    })
+                """, key="speech_result_exam")
+                if result:
+                    existing = st.session_state.get("exam_answer_input", "")
+                    st.session_state.exam_answer_input = (existing + " " + result).strip()
+                    st.rerun()
+
             answer = st.text_area(
                 "Your answer:",
                 height=180,
-                placeholder="Type your full answer here…",
+                placeholder="Type or speak your answer here…",
                 key="exam_answer_input",
             )
             if st.button("✅ Submit Answer", type="primary", use_container_width=True):
